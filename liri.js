@@ -27,6 +27,7 @@ switch(userCmd) {
 
 function concertThis() {
     var artist = process.argv.slice(3).join("+");
+
     axios
         .get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
         .then(function(response) {
@@ -50,4 +51,25 @@ function concertThis() {
             }
             console.log(error.config);
        });
-}
+};
+
+function spotifySong() {
+    var song = process.argv.slice(3).join(" ");
+
+    spotify
+        .search({type: "track", query: song})
+        .then(function(response) {
+            var songTitle = JSON.stringify(response.tracks.items[0].name);
+            var songArtist = JSON.stringify(response.tracks.items[0].artists[0].name);
+            var songAlbum = JSON.stringify(response.tracks.items[0].album.name);
+            var songPreview = JSON.stringify(response.tracks.items[0].external_urls.spotify);
+
+            console.log("Song: " + songTitle);
+            console.log("Album: " + songAlbum);
+            console.log("Artist: " + songArtist);
+            console.log("Preview URL: " + songPreview);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+};
