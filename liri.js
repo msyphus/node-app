@@ -77,3 +77,36 @@ function spotifySong() {
             console.log(error);
         });
 };
+
+function movieThis() {
+    var movie = process.argv.slice(3).join(" ");
+
+    if (movie === "") {
+        movie = "mr.nobody"
+    }
+
+    axios
+        .get("https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy")
+        .then(function(response) {
+            var movieTitle = response.data.Title;
+            var movieYear = response.data.Year;
+            var imdbRating = response.data.Ratings[0].Value;
+            var tomatoRating = response.data.Ratings[1].Value;
+            var movieCountry = response.data.Country;
+            var movieLanguage = response.data.Language;
+            var moviePlot = response.data.Plot;
+            var movieActors = response.data.Actors;
+
+            console.log("Movie Title: " + movieTitle);
+            console.log("Year Released: " + movieYear);
+            console.log("IMDB Rating: " + imdbRating);
+            console.log("Rotten Tomatoes Rating: " + tomatoRating);
+            console.log("Produced in: " + movieCountry);
+            console.log("Language: " + movieLanguage);
+            console.log("Plot: " + moviePlot);
+            console.log("Starring: " + movieActors);
+        })
+        .catch(function(error) {
+            console.log(error);
+       });
+}
