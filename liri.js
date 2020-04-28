@@ -56,6 +56,10 @@ function concertThis() {
 function spotifySong() {
     var song = process.argv.slice(3).join(" ");
 
+    if (song === "") {
+        song = "the sign"
+    }
+
     spotify
         .search({type: "track", query: song})
         .then(function(response) {
