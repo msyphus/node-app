@@ -4,6 +4,8 @@ var Spotify = require("node-spotify-api");
 var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
+var figlet = require("figlet");
+var chalk = require("chalk");
 
 var spotify = new Spotify(keys.spotify);
 var userCmd = process.argv[2];
@@ -36,9 +38,10 @@ function concertThis() {
             var venueLocation = response.data[0].venue.location;
             var eventDate = moment().format(response.data[0].datetime, "MM/DD/YYYY");
 
-            console.log("Venue Name: " + venueName);
-            console.log("Location: " + venueLocation);
-            console.log("Concert Date: " + eventDate);
+            console.log(chalk.keyword("orange")(figlet.textSync("Next Concert", {horizontalLayout: "full"})));
+            console.log(chalk`{blueBright Venue Name: } {cyanBright ${venueName}}`);
+            console.log(chalk`{blueBright Location: } {cyanBright ${venueLocation}}`);
+            console.log(chalk`{blueBright Concert Date: } {cyanBright ${eventDate}}`);
       })
         .catch(function(error) {
             console.log(error);
@@ -60,10 +63,11 @@ function spotifySong() {
             var songAlbum = JSON.stringify(response.tracks.items[0].album.name);
             var songPreview = JSON.stringify(response.tracks.items[0].external_urls.spotify);
 
-            console.log("Song: " + songTitle);
-            console.log("Album: " + songAlbum);
-            console.log("Artist: " + songArtist);
-            console.log("Preview URL: " + songPreview);
+            console.log(chalk.keyword("orange")(figlet.textSync("Song Info", {horizontalLayout: "full"})));
+            console.log(chalk`{blueBright Song: } {cyanBright ${songTitle}}`);
+            console.log(chalk`{blueBright Album: } {cyanBright ${songAlbum}}`);
+            console.log(chalk`{blueBright Artist: } {cyanBright ${songArtist}}`);
+            console.log(chalk`{blueBright Preview URL: } {cyanBright ${songPreview}}`);
         })
         .catch(function(error) {
             console.log(error);
@@ -74,7 +78,7 @@ function movieThis() {
     var movie = process.argv.slice(3).join(" ");
 
     if (movie === "") {
-        movie = "mr.nobody"
+        movie = "up"
     }
 
     axios
@@ -89,14 +93,15 @@ function movieThis() {
             var moviePlot = response.data.Plot;
             var movieActors = response.data.Actors;
 
-            console.log("Movie Title: " + movieTitle);
-            console.log("Year Released: " + movieYear);
-            console.log("IMDB Rating: " + imdbRating);
-            console.log("Rotten Tomatoes Rating: " + tomatoRating);
-            console.log("Produced in: " + movieCountry);
-            console.log("Language: " + movieLanguage);
-            console.log("Plot: " + moviePlot);
-            console.log("Starring: " + movieActors);
+            console.log(chalk.keyword("orange")(figlet.textSync("Movie Info", {horizontalLayout: "full"})));
+            console.log(chalk`{blueBright Movie Title: } {cyanBright ${movieTitle}}`);
+            console.log(chalk`{blueBright Year Released: } {cyanBright ${movieYear}}`);
+            console.log(chalk`{blueBright IMDB Rating: } {cyanBright ${imdbRating}}`);
+            console.log(chalk`{blueBright Rotten Tomatoes Rating: } {cyanBright ${tomatoRating}}`);
+            console.log(chalk`{blueBright Produced in: } {cyanBright ${movieCountry}}`);
+            console.log(chalk`{blueBright Language: } {cyanBright ${movieLanguage}}`);
+            console.log(chalk`{blueBright Plot: } {cyanBright ${moviePlot}}`);
+            console.log(chalk`{blueBright Starring: } {cyanBright ${movieActors}}`);
         })
         .catch(function(error) {
             console.log(error);
@@ -119,9 +124,10 @@ function doSay() {
                         var venueLocation = response.data[0].venue.location;
                         var eventDate = moment().format(response.data[0].datetime, "MM/DD/YYYY");
 
-                        console.log("Venue Name: " + venueName);
-                        console.log("Location: " + venueLocation);
-                        console.log("Concert Date: " + eventDate);
+                        console.log(chalk.keyword("orange")(figlet.textSync("Next Concert", {horizontalLayout: "full"})));
+                        console.log(chalk`{blueBright Venue Name: } {cyanBright ${venueName}}`);
+                        console.log(chalk`{blueBright Location: } {cyanBright ${venueLocation}}`);
+                        console.log(chalk`{blueBright Concert Date: } {cyanBright ${eventDate}}`);
                 })
                     .catch(function(error) {
                         console.log(error);
@@ -137,10 +143,11 @@ function doSay() {
                         var songAlbum = JSON.stringify(response.tracks.items[0].album.name);
                         var songPreview = JSON.stringify(response.tracks.items[0].external_urls.spotify);
             
-                        console.log("Song: " + songTitle);
-                        console.log("Album: " + songAlbum);
-                        console.log("Artist: " + songArtist);
-                        console.log("Preview URL: " + songPreview);
+                        console.log(chalk.keyword("orange")(figlet.textSync("Song Info", {horizontalLayout: "full"})));
+                        console.log(chalk`{blueBright Song: } {cyanBright ${songTitle}}`);
+                        console.log(chalk`{blueBright Album: } {cyanBright ${songAlbum}}`);
+                        console.log(chalk`{blueBright Artist: } {cyanBright ${songArtist}}`);
+                        console.log(chalk`{blueBright Preview URL: } {cyanBright ${songPreview}}`);
                     })
                     .catch(function(error) {
                         console.log(error);
@@ -160,14 +167,15 @@ function doSay() {
                         var moviePlot = response.data.Plot;
                         var movieActors = response.data.Actors;
 
-                        console.log("Movie Title: " + movieTitle);
-                        console.log("Year Released: " + movieYear);
-                        console.log("IMDB Rating: " + imdbRating);
-                        console.log("Rotten Tomatoes Rating: " + tomatoRating);
-                        console.log("Produced in: " + movieCountry);
-                        console.log("Language: " + movieLanguage);
-                        console.log("Plot: " + moviePlot);
-                        console.log("Starring: " + movieActors);
+                        console.log(chalk.keyword("orange")(figlet.textSync("Movie Info", {horizontalLayout: "full"})));
+                        console.log(chalk`{blueBright Movie Title: } {cyanBright ${movieTitle}}`);
+                        console.log(chalk`{blueBright Year Released: } {cyanBright ${movieYear}}`);
+                        console.log(chalk`{blueBright IMDB Rating: } {cyanBright ${imdbRating}}`);
+                        console.log(chalk`{blueBright Rotten Tomatoes Rating: } {cyanBright ${tomatoRating}}`);
+                        console.log(chalk`{blueBright Produced in: } {cyanBright ${movieCountry}}`);
+                        console.log(chalk`{blueBright Language: } {cyanBright ${movieLanguage}}`);
+                        console.log(chalk`{blueBright Plot: } {cyanBright ${moviePlot}}`);
+                        console.log(chalk`{blueBright Starring: } {cyanBright ${movieActors}}`);
                     })
                     .catch(function(error) {
                         console.log(error);
